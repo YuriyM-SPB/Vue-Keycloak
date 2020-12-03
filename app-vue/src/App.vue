@@ -2,6 +2,23 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
+<h2>User: {{keycloak.idTokenParsed.preferred_username}}</h2>
+<div>
+  <button class="btn" @click="keycloak.logout()">Logout</button>
+</div>
+<div id="wrapper">
+  <div class="jwt-token">
+    <h3 style="color: black;">JWT Token</h3>
+    {{keycloak.idToken}}
+  </div>
+   <div class="jwt-token">
+    <h3 style="color: black;">Info</h3>
+    <ul>
+      <li>clientId: {{keycloak.clientId}}</li>
+      <li>Auth Server Url: {{keycloak.authServerUrl}}</li>
+    </ul>
+  </div>
+</div>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -22,9 +39,10 @@
 <script>
 export default {
   name: 'app',
+  props: ['keycloak'],
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Secured Vue.js App with Keycloak'
     }
   }
 }
